@@ -40,5 +40,21 @@ export const useSequenceStore = defineStore({
             this.sequences[0] = this.sequences.splice(index, 1, this.sequences[0])[0];
             this.sequenceNames[0] = this.sequenceNames.splice(index, 1, this.sequenceNames[0])[0];
         },
+        async moveUp(index: number) {
+            if(index - 1 < 0){
+                return;
+            }else{
+                this.sequences[index] = this.sequences.splice(index - 1, 1, this.sequences[index])[0];
+                this.sequenceNames[index] = this.sequenceNames.splice(index - 1, 1, this.sequenceNames[index])[0];
+            }
+        },
+        async moveDown(index: number) {
+            if (index + 1 >= this.sequences.length){
+                return;
+            }else{
+                this.sequences[index] = this.sequences.splice(index + 1, 1, this.sequences[index])[0];
+                this.sequenceNames[index] = this.sequenceNames.splice(index + 1, 1, this.sequenceNames[index])[0];
+            }
+        },
     }
 })

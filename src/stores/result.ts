@@ -20,6 +20,9 @@ export const useResultStore = defineStore({
             this.errored = false;
             this.log = "";
         },
+        reset_result(){
+            this.result = new Array<Array<Number>>();
+        },
         validate_sequences () {
             
             const { sequences,referenceIndex,sequenceLength} = useSequenceStore();
@@ -51,7 +54,7 @@ export const useResultStore = defineStore({
 
                 // All sequences only contains characters from ['A', 'T', 'C', 'G']
                 if(!item.match(/^[ATCG]*$/g)){
-                    this.log_error(item + "is not a valiad sequence. Valid sequences only contains characters from ['A', 'T', 'C', 'G']")
+                    this.log_error(item + " : is not a valiad sequence. Valid sequences only contains characters from ['A', 'T', 'C', 'G']")
                     return false;
                 }
 

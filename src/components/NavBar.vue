@@ -3,7 +3,7 @@
     <a href="#" class="pure-menu-heading pure-menu-link">Gene Diff Tool</a>
     <ul class="pure-menu-list">
       <li class="pure-menu-item">
-        <a @click="newSequence()" class="pure-menu-link">Add Row</a>
+        <a @click="newSequence()" class="pure-menu-link"><fa :icon="['fas', 'plus']" /> Add Row</a>
       </li>
     </ul>
   </div>

@@ -1,10 +1,10 @@
 <template>
-  <h2>Results: </h2>
 
 <div class="error-panel" v-if="errored">
   <aside><p>{{ log }}</p></aside>
 </div>
-<div v-if="sequences.length==result.length && !errored" class="result-panel">
+<div v-if="result.length != 0" class="result-panel">
+  <h3>Results: </h3>
   <!-- Display the count-->
   <pre>{{count}}</pre>
   <pre>{{lines}}</pre>
@@ -24,6 +24,8 @@
   import {storeToRefs} from "pinia";
 
   const {result,count,lines,names,errored,log} = storeToRefs(useResultStore())
+  const {validate_sequences} = useResultStore()
+
   const {sequences} = storeToRefs(useSequenceStore())
 
 </script>
