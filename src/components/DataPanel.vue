@@ -3,6 +3,7 @@
     <thead>
     <tr>
       <th style="width: 5%">#</th>
+      <th style="width: 15%">Name</th>
       <th>Sequence</th>
       <th style="width: 25%">Action</th>
     </tr>
@@ -10,6 +11,9 @@
     <tbody>
     <tr v-for="(sequence, index) in sequences" :class="{'pure-table-odd': referenceIndex === index}">
       <td>{{index}}</td>
+      <td>
+        <input id="{{index}}" v-model="sequenceNames[index]" style="width: 100%"/>
+      </td>
       <td>
         <input id="{{index}}" v-model="sequences[index]" style="width: 100%"/>
       </td>
@@ -27,7 +31,7 @@
     </tr>
     </tbody>
   </table>
-  <button style="margin-top: 10px" class="pure-button-primary pure-button full-width" @click="validate() && calculate()">Run</button>
+  <button style="margin-top: 10px" class="pure-button-primary pure-button full-width" @click="calculate()">Run</button>
 
 </template>
 
@@ -35,9 +39,9 @@
 import { useSequenceStore } from '../stores/sequence'
 import { storeToRefs } from 'pinia'
 import {useResultStore} from "../stores/result";
-const { referenceIndex,sequences } = storeToRefs(useSequenceStore())
+const { referenceIndex,sequences,sequenceNames } = storeToRefs(useSequenceStore())
 const { setReference,deleteSequence } = useSequenceStore()
-const { validate, calculate } = useResultStore()
+const { calculate } = useResultStore()
 
 </script>
 

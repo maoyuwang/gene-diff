@@ -1,11 +1,16 @@
 <template>
   <h2>Results: </h2>
-<div class="result-panel">
+
+<div class="error-panel" v-if="errored">
+  <aside><p>{{ log }}</p></aside>
+</div>
+<div v-if="sequences.length==result.length && !errored" class="result-panel">
   <!-- Display the count-->
   <pre>{{count}}</pre>
   <pre>{{lines}}</pre>
-  <!-- Display the sequences -->
+  <!-- Display the sequences with names -->
   <p v-for="(row, i) in result">
+    <pre class="inline">{{names[i]}}</pre>
     <span v-for="(col, j) in result[i]" :class="{'diff': col === 0, 'same': col === 1}">
       {{sequences[i][j]}}
     </span>
@@ -18,7 +23,7 @@
   import {useSequenceStore} from "../stores/sequence";
   import {storeToRefs} from "pinia";
 
-  const {result,count,lines} = storeToRefs(useResultStore())
+  const {result,count,lines,names,errored,log} = storeToRefs(useResultStore())
   const {sequences} = storeToRefs(useSequenceStore())
 
 </script>
@@ -41,5 +46,16 @@ p{
 }
 pre{
   margin: 0;
+}
+pre.inline{
+  display: inline;
+}
+
+aside {
+	background: red;
+	border-radius: 3px;
+	color: #fff;
+	padding: .3em 2em;
+  margin: 1em 0;
 }
 </style>
