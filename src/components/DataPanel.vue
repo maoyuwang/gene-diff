@@ -11,7 +11,7 @@
     <tr v-for="(sequence, index) in sequences" :class="{'pure-table-odd': referenceIndex === index}">
       <td>{{index}}</td>
       <td>
-        <input id="{{index}}" :value="sequence" @input="event => updateSequence(index,event.target.value)" style="width: 100%"/>
+        <input id="{{index}}" v-model="sequences[index]" style="width: 100%"/>
       </td>
       <td>
         <div class="pure-g">
@@ -31,20 +31,14 @@
 
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useSequenceStore } from '../stores/sequence'
 import { storeToRefs } from 'pinia'
 import {useResultStore} from "../stores/result";
-const { sequences,referenceIndex } = storeToRefs(useSequenceStore())
-const { setReference,deleteSequence,updateSequence } = useSequenceStore()
+const { referenceIndex,sequences } = storeToRefs(useSequenceStore())
+const { setReference,deleteSequence } = useSequenceStore()
 const { validate, calculate } = useResultStore()
 
-</script>
-
-<script>
-export default {
-  name: "DataPanel"
-}
 </script>
 
 <style scoped>

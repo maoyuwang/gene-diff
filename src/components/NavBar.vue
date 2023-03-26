@@ -23,15 +23,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useSequenceStore } from '../stores/sequence'
 const { newSequence } = useSequenceStore()
-</script>
-
-<script>
-export default {
-  name: "NavBar"
-}
 </script>
 
 <style scoped>

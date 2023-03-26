@@ -13,14 +13,7 @@
 </div>
 </template>
 
-<script>
-
-export default {
-  name: "ResultPanel"
-}
-</script>
-
-<script setup>
+<script lang="ts" setup>
   import {useResultStore} from "../stores/result";
   import {useSequenceStore} from "../stores/sequence";
   import {storeToRefs} from "pinia";

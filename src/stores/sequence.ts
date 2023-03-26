@@ -4,15 +4,15 @@ export const useSequenceStore = defineStore({
     id: 'sequence',
     state: () => ({
         sequences: Array<String>(),
-        sequenceLength: -1,
         referenceIndex: 0
     }),
     getters: {
-        getSequences: (state) => {
-            return state.sequences
-        },
-        getReferenceIndex: (state) => {
-            return state.referenceIndex
+        sequenceLength: (state) => {
+            if (state.sequences.length == 0){
+                return -1;
+            }else{
+                return state.sequences[0].length;
+            }
         }
     },
     actions: {
@@ -21,10 +21,6 @@ export const useSequenceStore = defineStore({
         },
         async deleteSequence(index: number) {
             this.sequences.splice(index,1)
-        },
-        async updateSequence(index: number,newSequence: String) {
-            this.sequences.splice(index,1,newSequence.toUpperCase())
-            this.sequenceLength = newSequence.length
         },
         async setReference(index: number) {
             this.sequences[0] = this.sequences.splice(index, 1, this.sequences[0])[0];
