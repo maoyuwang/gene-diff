@@ -31,6 +31,7 @@
 <style scoped>
 .result-panel{
   border: gray;
+  padding: 2em;
   border-width: 2px;
   border-style: solid;
   font-family: "Roboto Mono",monospace;
